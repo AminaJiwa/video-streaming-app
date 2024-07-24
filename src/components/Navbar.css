@@ -3,6 +3,8 @@
     height: 50px;
     width: 20%;
     transform: scale(0.2); 
+    padding-right: 50px;
+    margin-left: 0%;
 }
 
 .navbar{
@@ -34,4 +36,3 @@
     color:black;
     font-weight: bold;
 }
-
