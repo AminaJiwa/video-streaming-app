@@ -4,6 +4,8 @@ import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import {NextUIProvider} from "@nextui-org/react";
 import './App.css';
 import Home from './pages/Home';
+import User from './pages/User';
+import Admin from './pages/Admin';
 
 function App() {
 
@@ -12,10 +14,10 @@ function App() {
   return (
     <div className="App">
        <NextUIProvider navigate={navigate}>
-      {/* Your app here... */}
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* ... */}
+        <Route path="pages/User" element={<User />} />
+        <Route path="pages/Admin" element={<Admin />} />
       </Routes>
     </NextUIProvider>
     </div>
