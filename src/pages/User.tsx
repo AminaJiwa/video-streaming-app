@@ -5,7 +5,7 @@ import "../components/Navbar.css"
 
 function User() {
     return (
-        <NavbarComponent toAdmin={'pages/Admin'} toUser={'pages/User'} toHome={'/'} to={''} />
+        <NavbarComponent toAdmin={'/pages/Admin'} toUser={'/pages/User'} toHome={'/'} to={''} />
     );
 }
 

@@ -1,20 +1,26 @@
 import React, { ChangeEvent, useState } from 'react';
 import {Button, Card, CardHeader, Image, Link, NextUIProvider} from "@nextui-org/react";
+import { useNavigate } from 'react-router-dom';
 import "./Pages.css";
 import "../components/Navbar.css"
-import { useNavigate } from 'react-router-dom';
 import NavbarComponent from '../components/NavbarComponent';
 import sportsImg from "../components/images/sports-image.jpg";
 import tvshowImg from "../components/images/tvshow-image.jpg";
 import moviesImg from "../components/images/movies-image.jpg";
 
 function Home() {
+
     const navigate = useNavigate();
+    const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        navigate('pages/User');
+    }
 
     return (   
         <div>
-        <NavbarComponent toAdmin={'pages/Admin'} toUser={'pages/User'} toHome={'/'} to={''} />
-        <h2>Video streaming services for you</h2>
+        <div className="home-body">
+        <NavbarComponent toAdmin={'/pages/Admin'} toUser={'/pages/User'} toHome={'/'} to={''} />
+        <h2 className='h2-home'>Video streaming services for you</h2>
 
         <div className="card-home">
         <Card className="subcard-home">
@@ -24,7 +30,7 @@ function Home() {
             <Image
             removeWrapper
             alt="Card background"
-            className="z-0 w-full h-full object-cover"
+            className="image-home"
             src={sportsImg}
             />
         </Card>
@@ -36,7 +42,7 @@ function Home() {
             <Image
             removeWrapper
             alt="Card background"
-            className="z-0 w-full h-full object-cover"
+            className="image-home"
             src={moviesImg}
             />
         </Card>
@@ -48,14 +54,16 @@ function Home() {
             <Image
             removeWrapper
             alt="Card background"
-            className="z-0 w-full h-full object-cover"
+            className="image-home"
             src={tvshowImg}
             />
         </Card>
         </div>
-        <Button color="primary" variant="ghost">
+        <br></br>
+        <Button className="button-home" onClick={buttonHandler} variant="ghost">
         Find out more
         </Button> 
+        </div>
         </div>
     
 

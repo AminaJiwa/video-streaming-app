@@ -1,9 +1,12 @@
-
+.h2-home{
+    color: aliceblue;
+}
 .card-home {
     width: 100%;
     padding: 5px;
     float: center;
     border-radius: 5px;
+    margin-left: 0%;
 }
 
 .subcard-home {
@@ -11,7 +14,61 @@
     max-height: 350px;
     color: white;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: inline-block;
+    margin: 10px;
+    border-color: rgba(0, 128, 128, 0.3);
+    border-style: solid;
+    background-color: rgba(0, 128, 128, 0.3);
 
+}
+
+.image-home {
+    border-radius: 10px;
+    border-color: rgba(240, 248, 255, 0.531);
+    border-style: solid;
+    transform: scale(100%);
+    padding-left: 0%;
+    display: inline-flex;
+    margin-left: 0%;
+    margin-right: auto;
+    width: 100%;
+    height: 170%;
+}
+
+.button-home{
+  align-items: center;
+  background-color: #5483adb7;
+  border-radius: 12px;
+  box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+  box-sizing: border-box;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  white-space: nowrap;
+  border: 0;
+  touch-action: manipulation;
+}
+
+.button-home:hover {
+  box-shadow: #719dc7 0 0 0 3px, transparent 0 0 0 0;
+}
+
+.home-body {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20%;
 }
