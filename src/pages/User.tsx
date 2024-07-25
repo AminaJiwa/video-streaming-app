@@ -58,8 +58,38 @@ function User() {
     }, [cardValue])
 
     //Handle Submit
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log("test ");
+    const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+         // Construct the request body
+        const requestBody = {
+            username: usernameValue,
+            password: passwordValue,
+            email: emailValue,
+            birthDate: selectedDate, 
+            creditCard: cardValue,
+        };
+
+        try{
+            const response = await fetch("/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestBody),
+
+            });
+
+            if (response.ok) {
+                console.log("Data sent successfully.");
+            }
+            else{
+                console.error("Error sending data: ", response.statusText);
+            }
+        } 
+        catch (error) {
+            console.error("Error sendig data: ", error);
+        }
     }
 
     return (
