@@ -20,7 +20,7 @@ function Home() {
         <div>
         <div className="home-body">
         <NavbarComponent toAdmin={'/pages/Admin'} toUser={'/pages/User'} toHome={'/'} to={''} />
-        <h2 className='h2-home'>Video streaming services for you</h2>
+        <h2 className='h2-pages'>Video streaming services for you</h2>
 
         <div className="card-home">
         <Card className="subcard-home">
@@ -60,7 +60,7 @@ function Home() {
         </Card>
         </div>
         <br></br>
-        <Button className="button-home" onClick={buttonHandler} variant="ghost">
+        <Button className="button-home" onClick={buttonHandler}>
         Find out more
         </Button> 
         </div>
