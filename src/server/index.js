@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 import {mongodbURL, PORT} from "./config.js";
-import {userModel} from "./models/userModel.js";
+import {User} from "./models/userModel.js";
 
 const app = express();
 
@@ -92,17 +92,45 @@ app.post('/users', async (request, response) => {
   
       response.status(201).json({ message: 'User created successfully!' });
     } catch (error) {
-      console.error('Error creating user:', error);
-      response.status(500).json({ error: 'Internal server error' });
+      console.error('Error creating user:', error.message);
+      response.status(500).json({message: error.message});
     }
   });
 
-
+//Route for get all users from database
 app.get("/users", async (request, response) => {
-    console.log(request);
-    return response.status(201).send("User returned");
+    try{
+      const users = await User.find({});
+      return response.status(200).json(users);
+    }
+    catch (error){
+      console.error(error.message)
+      response.status(500).json({message: error.message});
+    }
 });
   
+//Route for getting users who have/ don't have a credit card with filter
+app.get("/users/filter", async (request, response) => {
+  try{
+    //Users must specify creditCard=Yes or creditCard=No in their request
+    const {creditCard} = request.query;
+    const filter = {};
+
+    if (creditCard === "Yes"){
+      filter.creditCard = { $exists: true };
+    }
+    else if (creditCard === "No"){
+      filter.creditCard = { $exists: false };
+    }
+
+    const users = await User.find(filter);
+    response.status(200).json(users);
+
+  }
+  catch {
+
+  }
+})
 
 mongoose
   .connect(mongodbURL)
