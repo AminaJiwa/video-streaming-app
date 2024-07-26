@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import NavbarComponent from '../components/NavbarComponent';
 import "../components/Navbar.css"
 import {Button, Input} from "@nextui-org/react";
@@ -17,11 +17,6 @@ function User() {
     const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const dateValue = (event.target.value);
         setSelectedDate(dateValue);
-        // const [day, month, year] = dateValue.split("/").map(Number);
-        // //Months in JavaScript's Date object are 0-indexed (January is 0, February is 1, etc.)
-        // let isoDate = new Date(year, month - 1, day);
-
-        // setSelectedDate(isoDate.toLocaleDateString());
         
       };
 
@@ -107,7 +102,7 @@ function User() {
     return (
     <div>
         <div className="user-body">
-        <NavbarComponent toAdmin={'/pages/Admin'} toUser={'/pages/User'} toHome={'/'} to={''} />
+        <NavbarComponent toPayments={'/pages/Payments'} toAdmin={'/pages/Admin'} toUser={'/pages/User'} toHome={'/'} to={''} />
 
         <h2 className='h2-pages'>Sign up now for your free 15-day trial</h2>
 
@@ -123,7 +118,7 @@ function User() {
             color={isUsernameInvalid ? "danger" : "success"}
             errorMessage="Please enter a valid username"
             onValueChange={setUsernameValue}
-            className="max-w-xs"
+            className="required"
         />
         <p className="description-form">Your username should contain one or more letters or numbers, and no spaces.</p>
 
@@ -137,7 +132,7 @@ function User() {
             color={isPasswordInvalid ? "danger" : "success"}
             errorMessage="Please enter a valid password"
             onValueChange={setPasswordValue}
-            className="max-w-xs"
+            className="required"
         />
         <p className="description-form">Your password should have at least 8 characters, with at 1 uppercase letter and number.</p>
 
@@ -151,32 +146,19 @@ function User() {
             color={isEmailInvalid ? "danger" : "success"}
             errorMessage="Please enter a valid email"
             onValueChange={setEmailValue}
-            className="max-w-xs"
+            className="required"
         />
-
+        <br></br>
         <Input
             isRequired
             label="Birth Date"
-            className="date-input"
+            className="date-input required"
             type="date"
             value={selectedDate}
             onChange={handleDateChange}
         
         />
 
-        {/* <Input 
-        label="Birth date"
-        type="date"
-        defaultValue={parseDate("2024-04-04")} 
-        placeholderValue={new CalendarDate(1995, 11, 6)} 
-        isInvalid
-        errorMessage={(value) => {
-          if (value.isInvalid) {
-            return "Please enter a valid date.";
-          }
-        }}
-        className="date-input"
-        /> */}
 
         <Input
             value={cardValue}

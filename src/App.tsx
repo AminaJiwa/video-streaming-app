@@ -6,6 +6,7 @@ import './App.css';
 import Home from './pages/Home';
 import User from './pages/User';
 import Admin from './pages/Admin';
+import Payments from './pages/Payments';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="pages/User" element={<User />} />
         <Route path="pages/Admin" element={<Admin />} />
+        <Route path="pages/Payments" element={<Payments />}/>
       </Routes>
     </NextUIProvider>
     </div>

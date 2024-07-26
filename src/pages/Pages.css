@@ -3,10 +3,10 @@
 }
 .card-home {
     width: 100%;
-    padding: 5px;
     float: center;
     border-radius: 5px;
     margin-left: 0%;
+    margin-right: 10%;
 }
 
 .subcard-home {
@@ -67,7 +67,7 @@
 }
 
 .home-body {
-    background-color: #0c0d19;
+    background-color: #14162a;
     width: 100%;
     height: 100%;
     padding-bottom: 20%;
@@ -90,8 +90,7 @@
     margin-right: auto;
     color: aliceblue;
     width: 40%;
-    display: flex;
-    flex-direction: column;
+
   }
    
 .submit-button {
@@ -102,20 +101,21 @@
         color: #eee;
         cursor: pointer;
         font-size: 18px;
-        height: 50px;
+        height: 40px;
         margin-top: 38px;
         text-align: center;
-        width: 50%;
+        width: 40%;
 }
 
 .submit-button:hover {
     box-shadow: rgb(0, 79, 79) 0 0 0 2px, transparent 0 0 0 0;
   }
 
-Input, .date-input{
+Input{
     border-radius: 5px;
     padding: 2px;
     float: left;
+    margin: 5px;
 
 }
 
@@ -132,10 +132,15 @@ label{
     color: rgba(195, 193, 193, 0.87);
 }
 .date-input {
-    width: 80%;
+    width: 100%;
+    margin-left: 0%;
     white-space: nowrap;
     display: inline-block;
     flex-direction: row;
     
 }
 
+.required label:after {
+    content:" *";
+    color: red;
+  }

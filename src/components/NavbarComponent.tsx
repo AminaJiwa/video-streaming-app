@@ -5,6 +5,7 @@ import { ReplyLogo } from "../pages/ReplyLogo";
 import "./Navbar.css";
 
 interface NavbarComponentProps extends LinkProps {
+  toPayments: string;
   toAdmin: string;
   toUser: string;
   toHome: string;
@@ -12,6 +13,7 @@ interface NavbarComponentProps extends LinkProps {
 
 const NavbarComponent: React.FC<NavbarComponentProps>= ({
   children, // Include the children prop
+  toPayments,
   toAdmin,
   toUser,
   toHome,
@@ -23,8 +25,13 @@ const NavbarComponent: React.FC<NavbarComponentProps>= ({
           <ReplyLogo />
         </NavbarBrand>
         <NavbarContent>
-          <NavbarItem isActive className="navbar-item">
-            <Link className="nav-link" to={toAdmin} aria-current="page">
+        <NavbarItem className="navbar-item">
+            <Link className="nav-link" to={toPayments}>
+              Payments
+            </Link>
+          </NavbarItem>
+          <NavbarItem className="navbar-item">
+            <Link className="nav-link" to={toAdmin}>
               Admin
             </Link>
           </NavbarItem>
