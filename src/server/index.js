@@ -8,8 +8,10 @@ import {User} from "./models/userModel.js";
 const app = express();
 
 //Middleware to parse the JSON request body
-// app.use(cors());
+
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.post('/users', async (request, response) => {
     try {

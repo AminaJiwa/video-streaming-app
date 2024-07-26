@@ -2,18 +2,19 @@ import React, { ChangeEvent, useState } from 'react';
 import NavbarComponent from '../components/NavbarComponent';
 import "../components/Navbar.css"
 import {Button, DateInput, DateValue, Input} from "@nextui-org/react";
+import axios from "axios";
 
 function User() {
 
     const[usernameValue, setUsernameValue] = React.useState("");
     const[passwordValue, setPasswordValue] = React.useState("");
     const[emailValue, setEmailValue] = React.useState("");
-    const [selectedDate, setSelectedDate] = useState<DateValue | null>(null);
+    const [selectedDate, setSelectedDate] = React.useState("");
     const[cardValue, setCardValue] = React.useState("");
 
 
-    const handleDateChange = (date: DateValue | null) => {
-        setSelectedDate(date);
+    const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedDate(event.target.value);
       };
 
     //Check username with regex to be alphanumeric and no spaces
@@ -71,26 +72,22 @@ function User() {
         };
 
         try{
-            const response = await fetch("/users", {
-                method: "POST",
+            const response = await axios.post("/users", requestBody, {
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(requestBody),
 
             });
-
-            if (response.ok) {
-                console.log("Data sent successfully.");
-            }
-            else{
-                console.error("Error sending data: ", response.statusText);
+            if (response.status === 201) {
+                console.log('Data sent successfully.');
+            } else {
+                console.error('Error sending data:', response.statusText);
             }
         } 
         catch (error) {
-            console.error("Error sendig data: ", error);
+            console.error("Error sending data: ", error);
         }
-    }
+    };
 
     return (
     <div>
@@ -110,10 +107,10 @@ function User() {
             isRequired
             color={isUsernameInvalid ? "danger" : "success"}
             errorMessage="Please enter a valid username"
-            description="Your username should contain one or more letters or numbers, and no spaces."
             onValueChange={setUsernameValue}
             className="max-w-xs"
         />
+        <p className="description-form">Your username should contain one or more letters or numbers, and no spaces.</p>
 
         <Input
             value={passwordValue}
@@ -127,6 +124,7 @@ function User() {
             onValueChange={setPasswordValue}
             className="max-w-xs"
         />
+        <p className="description-form">Your password should have at least 8 characters, with at 1 uppercase letter and number.</p>
 
         <Input
             value={emailValue}
@@ -137,25 +135,37 @@ function User() {
             isInvalid={isEmailInvalid}
             color={isEmailInvalid ? "danger" : "success"}
             errorMessage="Please enter a valid email"
-            description="Your password should have at least 8 characters, with at 1 uppercase letter and number."
             onValueChange={setEmailValue}
             className="max-w-xs"
         />
 
-        
-        <DateInput
-        isRequired
+        <Input
+            isRequired
+            label="Birth Date"
+            className="date-input"
+            type="date"
+            value={selectedDate}
+            onChange={handleDateChange}
+            errorMessage={(value) => {
+                if (value.isInvalid) {
+                  return "Please enter a valid date.";
+                }
+              }}
+        />
+
+        {/* <Input 
         label="Birth date"
-        className="date-input"
-        value={selectedDate}
-        onChange={handleDateChange}
-        isInvalid={!selectedDate}
-        errorMessage={() => {
-          if (!selectedDate) {
-            return 'Please enter a valid date.';
+        type="date"
+        defaultValue={parseDate("2024-04-04")} 
+        placeholderValue={new CalendarDate(1995, 11, 6)} 
+        isInvalid
+        errorMessage={(value) => {
+          if (value.isInvalid) {
+            return "Please enter a valid date.";
           }
         }}
-        />
+        className="date-input"
+        /> */}
 
         <Input
             value={cardValue}
