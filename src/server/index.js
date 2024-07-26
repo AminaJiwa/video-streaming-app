@@ -62,7 +62,7 @@ app.post('/users', async (request, response) => {
       }
 
       //Check that user is over 18
-      const todayDate = new Date().now;
+      const todayDate = new Date();
       const userDate = new Date(birthDate);
       const age = todayDate.getFullYear - userDate.getFullYear
       if (age < 18){

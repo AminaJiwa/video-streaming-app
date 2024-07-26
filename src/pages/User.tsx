@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import NavbarComponent from '../components/NavbarComponent';
 import "../components/Navbar.css"
-import {Button, DateInput, DateValue, Input} from "@nextui-org/react";
+import {Button, Input} from "@nextui-org/react";
 import axios from "axios";
 
 function User() {
@@ -13,8 +13,16 @@ function User() {
     const[cardValue, setCardValue] = React.useState("");
 
 
+    //Convert date string to ISO8601 format
     const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedDate(event.target.value);
+        const dateValue = (event.target.value);
+        setSelectedDate(dateValue);
+        // const [day, month, year] = dateValue.split("/").map(Number);
+        // //Months in JavaScript's Date object are 0-indexed (January is 0, February is 1, etc.)
+        // let isoDate = new Date(year, month - 1, day);
+
+        // setSelectedDate(isoDate.toLocaleDateString());
+        
       };
 
     //Check username with regex to be alphanumeric and no spaces
@@ -62,6 +70,13 @@ function User() {
     const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        //Change date into ISO 8601 format
+        const [day, month, year] = selectedDate.split("/").map(Number);
+        //Months in JavaScript's Date object are 0-indexed (January is 0, February is 1, etc.)
+        let isoDate = new Date(year, month - 1, day);
+
+        setSelectedDate(isoDate.toLocaleDateString());
+
          // Construct the request body
         const requestBody = {
             username: usernameValue,
@@ -81,11 +96,11 @@ function User() {
             if (response.status === 201) {
                 console.log('Data sent successfully.');
             } else {
-                console.error('Error sending data:', response.statusText);
+                console.error("Error sending data:", response.statusText);
             }
         } 
         catch (error) {
-            console.error("Error sending data: ", error);
+            console.error("Error sending data:", error);
         }
     };
 
@@ -146,11 +161,7 @@ function User() {
             type="date"
             value={selectedDate}
             onChange={handleDateChange}
-            errorMessage={(value) => {
-                if (value.isInvalid) {
-                  return "Please enter a valid date.";
-                }
-              }}
+        
         />
 
         {/* <Input 
