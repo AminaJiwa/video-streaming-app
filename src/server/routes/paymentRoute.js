@@ -1,6 +1,7 @@
+
+import {Payment} from "../models/paymentModel.js";
+import {User} from "../models/userModel.js";
 const express = require("express");
-import {Payment} from "./models/paymentModel.js";
-import {User} from "./models/userModel.js";
 
 const router = express.Router();
 
