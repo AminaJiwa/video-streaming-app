@@ -101,7 +101,7 @@ function User() {
 
     return (
     <div>
-        <div className="user-body">
+        <div className="pages-body">
         <NavbarComponent toPayments={'/pages/Payments'} toAdmin={'/pages/Admin'} toUser={'/pages/User'} toHome={'/'} to={''} />
 
         <h2 className='h2-pages'>Sign up now for your free 15-day trial</h2>
@@ -159,7 +159,7 @@ function User() {
         
         />
 
-
+        <br></br>
         <Input
             value={cardValue}
             type="text"
