@@ -90,6 +90,14 @@ function User() {
             });
             if (response.status === 201) {
                 console.log('Data sent successfully.');
+
+                //Clear input form
+                setUsernameValue("");
+                setEmailValue("");
+                setPasswordValue("");
+                setSelectedDate("");
+                setCardValue("");
+                
             } else {
                 console.error("Error sending data:", response.statusText);
             }

@@ -48,6 +48,11 @@ function Payments() {
             });
             if (response.status === 201) {
                 console.log('Data sent successfully.');
+
+                //Clear input form
+                setCardValue("");
+                setAmountValue("");
+                
             } else {
                 console.error("Error sending data:", response.statusText);
             }
