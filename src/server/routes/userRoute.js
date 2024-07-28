@@ -1,4 +1,3 @@
-
 import {User} from "../models/userModel.js";
 const express = require("express");
 
@@ -48,7 +47,7 @@ router.post('/', async (request, response) => {
       //Check date of birth format (year, month, day)
       if (!/^\d{4}-\d{2}-\d{2}$/.test(birthDate)){
         return response.status(400).send({
-          message: "Invalid date of birth format ",
+          message: "Invalid date of birth format",
         });
       }
 

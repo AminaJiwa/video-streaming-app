@@ -1,4 +1,4 @@
-const request = require('supertest');
+const request = require('supertest'); //for HTTP tests
 const app = require('./paymentRoute'); 
 
 describe('POST /payments', () => {
@@ -65,12 +65,32 @@ describe('POST /payments', () => {
 });
   
 describe('GET /payments', () => {
-    it('should return an array of payments', async () => {
+    it('should return all payments from the database', async () => {
+
+      const mockPayments = [
+        { creditCard: '1234-5678', amountValue: '100' },
+        { creditCard: '9876-5432', amountValue: '200' },
+      ];
+  
+      // Insert mock payments into the database 
+      await Payment.insertMany(mockPayments);
+  
       const response = await request(app).get('/payments');
+  
+      // Check that the response status is 200 and contains payments
       expect(response.status).toBe(200);
-      expect(Array.isArray(response.body)).toBe(true);
+  
+      expect(response.body).toEqual(mockPayments);
     });
   
-   
+    it('should handle server errors', async () => {
+      // Mock an error during database query
+      jest.spyOn(Payment, 'find').mockRejectedValue(new Error('Database error'));
+  
+      const response = await request(app).get('/payments');
+
+      expect(response.status).toBe(500);
+      expect(response.body).toHaveProperty('message', 'Database error');
+    });
   });
   
