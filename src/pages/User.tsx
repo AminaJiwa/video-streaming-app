@@ -13,7 +13,7 @@ function User() {
     const[cardValue, setCardValue] = React.useState("");
 
 
-    //Convert date string to ISO8601 format
+    //Update input value to match useState value
     const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const dateValue = (event.target.value);
         setSelectedDate(dateValue);

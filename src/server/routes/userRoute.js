@@ -87,7 +87,7 @@ router.post('/', async (request, response) => {
       console.error('Error creating user:', error.message);
       response.status(500).json({message: error.message});
     }
-  });
+});
 
 //Route for get all users from database
 router.get("/", async (request, response) => {

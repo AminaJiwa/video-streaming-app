@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom';
 import User from '../pages/User';
 
-//To account for the useNavigate() may be used only in the context of a <Router> component error
+//To account for the "useNavigate() may be used only in the context of a <Router> component" error
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: () => jest.fn(), // Mock the useNavigate function

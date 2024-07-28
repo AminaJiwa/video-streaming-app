@@ -68,8 +68,8 @@ describe('GET /payments', () => {
     it('should return all payments from the database', async () => {
 
       const mockPayments = [
-        { creditCard: '1234-5678', amountValue: '100' },
-        { creditCard: '9876-5432', amountValue: '200' },
+        { creditCard: '1234567890123456', amountValue: '100' },
+        { creditCard: '9876543210987654', amountValue: '200' },
       ];
   
       // Insert mock payments into the database 

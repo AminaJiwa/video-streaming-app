@@ -2,7 +2,7 @@ import { act, render, screen } from '@testing-library/react'
 import Home from '../pages/Home';
 import { MemoryRouter } from 'react-router-dom';
 
-//To account for the useNavigate() may be used only in the context of a <Router> component error
+//To account for the "useNavigate() may be used only in the context of a <Router> component" error
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: () => jest.fn(), // Mock the useNavigate function
@@ -42,8 +42,7 @@ describe('Home component', () => {
     
         render(<MemoryRouter><Home /></MemoryRouter>);
         const buttonElement = screen.getByText(/Find out more/i);
-    
-        // Wrap the button click in act
+  
         act(() => {
           buttonElement.click();
         });

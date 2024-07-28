@@ -11,7 +11,7 @@ const [user, setUser] = React.useState({
     username: "JohnDoe",
     email: "johndoe@example.com",
     password: "Password123",
-    dateOfBirth: "01/01/2000",
+    dateOfBirth: "2000-01-01",
     cardNumber: "1234567890123456",
 });
 const { id } = useParams();

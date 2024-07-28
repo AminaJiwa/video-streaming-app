@@ -15,7 +15,7 @@ describe('Payments component', () => {
   });
 
   it('handles form submission', async () => {
-    // Mock axios response (you can customize this mock as needed)
+    // Mock axios response
     const mockResponse = { status: 201 };
     (axios.post as jest.Mock).mockResolvedValue({ status: 201 });
 
@@ -28,10 +28,9 @@ describe('Payments component', () => {
     // Submit the form
     fireEvent.click(screen.getByText(/Submit/i));
 
-    // Wait for the axios call to resolve
     await screen.findByText(/Data sent successfully/i);
 
-    // Assert that the form fields are cleared
+    // Check that the form fields are cleared
     expect(screen.getByLabelText(/Credit card number/i)).toHaveValue('');
     expect(screen.getByLabelText(/Amount/i)).toHaveValue('');
   });

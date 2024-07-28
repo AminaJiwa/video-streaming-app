@@ -38,7 +38,7 @@ describe('POST /users', () => {
     
   it('should validate alphanumeric username format', async () => {
     const invalidUsernameData = {
-      username: 'Jane Smith ',
+      username: 'Jane Smith ',//Username contains spaces
       password: 'Test123',
       email: 'jane@example.com',
       birthDate: '2000-01-01',
@@ -74,7 +74,7 @@ describe('POST /users', () => {
     //Password format of min 8 length and 1 uppercase letter and number
     const invalidPasswordData = {
       username: 'JaneSmith',
-      password: 'pass',
+      password: 'pass', //No uppercase letter or number
       email: 'jane@example.com',
       birthDate: '2000-01-01',
       creditCard: '1234567890123456',
@@ -90,7 +90,7 @@ describe('POST /users', () => {
     const invalidEmailData = {
       username: 'JohnDoe',
       password: 'Password123',
-      email: 'john',
+      email: 'john', //email doesn't contain @ symbol
       birthDate: '2000-01-01',
       creditCard: '1234567890123456',
     };
@@ -106,7 +106,7 @@ describe('POST /users', () => {
       username: 'JohnDoe',
       password: 'Password123',
       email: 'johndoe@example.com',
-      birthDate: '2000-01-01',
+      birthDate: '2000', //Only contains year
       creditCard: '1234567890123456',
     };
     const response = await request(app).post('/users').send(invalidDateData);
@@ -121,7 +121,7 @@ describe('POST /users', () => {
       username: 'JohnDoe',
       password: 'Password123',
       email: 'test@example.com',
-      birthDate: '2024-01-01', 
+      birthDate: '2024-01-01', //User is less than 18 years old
     };
   
     const response = await request(app).post('/users').send(underageUserData);
@@ -131,13 +131,13 @@ describe('POST /users', () => {
   });
 
   it('should validate credit card number format', async () => {
-    //Invalid card number format, expected 16 digits
+   
     const invalidCardData = {
       username: 'JohnDoe',
       password: 'Password123',
       email: 'johndoe@example.com',
       birthDate: '20001',
-      creditCard: '123',
+      creditCard: '123',  //Invalid card number format, expected 16 digits
     };
     const response = await request(app).post('/users').send(invalidCardData);
 
@@ -152,8 +152,8 @@ describe('POST /users', () => {
     it('should return all users from the database', async () => {
       // Mock some users 
       const mockUsers = [
-        { username: 'JohnDoe', email: 'johndoe@example.com' },
-        { username: 'JaneDoe', email: 'janedoe@example.com' },
+        { username: 'JohnDoe', email: 'johndoe@example.com', password: 'Password123', birthDate: '2000-01-01'},
+        { username: 'JaneDoe', email: 'janedoe@example.com', password: 'Password123', birthDate: '2000-01-01' },
       ];
   
       await User.insertMany(mockUsers);
@@ -180,8 +180,8 @@ describe('GET /users/filter', () => {
     it('should return users with credit cards when creditCard=Yes', async () => {
       // Mock users with credit cards
       const usersWithCreditCard = [
-        { username: 'JohnDoe', creditCard: '1234567890123456' },
-        { username: 'JaneDoe', creditCard: '9876543210987654' },
+        { username: 'JohnDoe', email: 'johndoe@example.com', password: 'Password123', birthDate: '2000-01-01', creditCard: '1234567890123456' },
+        { username: 'JaneDoe', email: 'janedoe@example.com', password: 'Password123', birthDate: '2000-01-01', creditCard: '9876543210987654' },
       ];
   
       await User.insertMany(usersWithCreditCard);
@@ -195,8 +195,8 @@ describe('GET /users/filter', () => {
     it('should return users without credit cards when creditCard=No', async () => {
       // Mock users without credit cards
       const usersWithoutCreditCard = [
-        { username: 'JohnDoe' },
-        { username: 'JaneDoe' },
+        { username: 'JohnDoe', email: 'johndoe@example.com', password: 'Password123', birthDate: '2000-01-01'},
+        { username: 'JaneDoe', email: 'janedoe@example.com', password: 'Password123', birthDate: '2000-01-01' },
       ];
       await User.insertMany(usersWithoutCreditCard);
       // Make a request with creditCard=No

@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Admin from '../pages/Admin';
 import { MemoryRouter } from 'react-router-dom';
 

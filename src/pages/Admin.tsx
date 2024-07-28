@@ -13,11 +13,12 @@ interface User {
   email: string;
   password: string;
   dateOfBirth: string;
-  cardNumber: string;
+  cardNumber?: string;
 }
 
 interface AdminProps {
-  users: User[];
+  //Interface is only needed when testing Admin.test.tsx, so it is optional
+  users?: User[];
 }
 function Admin({ users }: AdminProps) {
 
@@ -48,6 +49,7 @@ function Admin({ users }: AdminProps) {
         <Button className="admin-button" onClick={() => setCardNumber(true)}>View users with credit card number</Button>
         <br></br>
         <Button className="admin-button" onClick={() => setCardNumber(false)}>View users without credit card number</Button>
+        <br></br>
         <br></br>
         <Card className="card-admin">
             <CardBody>
