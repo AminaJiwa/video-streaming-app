@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
+import  {BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import {NextUIProvider} from "@nextui-org/react";
 import './App.css';
 import Home from './pages/Home';

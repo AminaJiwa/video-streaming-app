@@ -171,7 +171,7 @@ function User() {
         <Input
             value={cardValue}
             type="text"
-            label="Credit card number"
+            label="Credit Card Number"
             variant="bordered"
             isInvalid={isCardInvalid}
             color={isCardInvalid ? "danger" : "success"}
