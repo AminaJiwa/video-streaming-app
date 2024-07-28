@@ -7,7 +7,19 @@ import axios from 'axios';
 import UserComponent from '../components/UserComponent';
 
 
-function Admin() {
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  dateOfBirth: string;
+  cardNumber: string;
+}
+
+interface AdminProps {
+  users: User[];
+}
+function Admin({ users }: AdminProps) {
 
         const [user, setUser] = React.useState([1]);
         const [cardNumber, setCardNumber] = React.useState(false);
