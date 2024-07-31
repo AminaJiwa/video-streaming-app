@@ -1,10 +1,14 @@
 import {mongodbURL, PORT} from "./config.js";
 import userRoute from "./routes/userRoute.js";
 import paymentRoute from "./routes/paymentRoute.js";
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+//const express = require("express");
+//const mongoose = require("mongoose");
+import express from "express";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import cors from "cors";
+//const bodyParser = require("body-parser");
+//const cors = require("cors");
 
 const app = express();
 

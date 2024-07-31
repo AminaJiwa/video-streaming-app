@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-
+//const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const paymentSchema = new mongoose.Schema({
             creditCard: {type: String, required: true},

@@ -1,8 +1,8 @@
 
 import {Payment} from "../models/paymentModel.js";
 import {User} from "../models/userModel.js";
-const express = require("express");
-
+//const express = require("express");
+import express from "express";
 const router = express.Router();
 
 router.post('/', async (request, response) => {
